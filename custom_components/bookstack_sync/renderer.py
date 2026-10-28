@@ -106,12 +106,12 @@ def _md_escape(value: object) -> str:
     sanitiser strips ``javascript:`` schemes on render, but treating that
     as defence-in-depth lets us not depend on it.
     """
-    if not value:
-        return value
     # Device registry fields such as sw_version can arrive as ints.
+    text = "" if value is None else str(value)
+    if not text:
+        return text
     return (
-        str(value)
-        .replace("\\", "\\\\")
+        text.replace("\\", "\\\\")
         .replace("|", "\\|")
         .replace("[", "\\[")
         .replace("]", "\\]")

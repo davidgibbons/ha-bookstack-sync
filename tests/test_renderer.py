@@ -128,6 +128,12 @@ class TestMdEscape:
     def test_non_string_coerced(self) -> None:
         assert _md_escape(1234) == "1234"
 
+    def test_falsy_non_string_coerced(self) -> None:
+        assert _md_escape(0) == "0"
+
+    def test_none_becomes_empty(self) -> None:
+        assert _md_escape(None) == ""
+
     def test_empty_input(self) -> None:
         assert _md_escape("") == ""
 
